@@ -1,0 +1,27 @@
+#image: pytorch/pytorch:1.9.0-cuda10.2-cudnn7-runtime
+image: wangqipeng/wecloud_train:v0.3.0
+job_name: yyt
+
+setup: |
+  uname -a
+  echo "hello world"
+  python3 --version
+  pip3 install -r requirements.txt
+  python download_dataset.py
+
+run: |
+  python 
+  -u 
+  train.py 
+  --net 
+  googlenet
+  --gpu
+
+profile: |
+  python 
+  -u 
+  train.py 
+  --net 
+  googlenet
+  --gpu 
+  --profiling
